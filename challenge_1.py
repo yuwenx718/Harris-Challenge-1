@@ -7,6 +7,7 @@
 # station in the city. You are going to use real data from Divvy collected at 1:30pm on 4/7/2020 
 # to analyze supply and demand for bikes in the system. 
 
+# NOTE ** if you aren't able to run this, type "pip install json" into your command line
 import json
 
 # do not delete; this is the data you'll be working with
