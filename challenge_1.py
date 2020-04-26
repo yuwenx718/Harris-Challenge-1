@@ -16,14 +16,23 @@ divvy_stations = json.loads(open('divvy_stations.txt').read())
 # PROBLEM 1
 # find average number of empty docks (num_docks_available) and 
 # available bikes (num_bikes_available) at all stations in the system
-
+avg_empty_stocks = round (sum(d['num_docks_available'] for d in divvy_stations)/len(divvy_stations), 2)
+print('There are {} empty docks at all stations in the system on average.'.format(avg_empty_stocks))
+avg_avail_bikes = round (sum(d['num_bikes_available'] for d in divvy_stations)/len(divvy_stations), 2)
+print('There are {} available bikes at all stations in the system on average.'.format(avg_avail_bikes))
 
 # PROBLEM 2
 # find ratio of bikes that are currently rented to total bikes in the system (ignore ebikes)
-
+ratio_of_bikes = sum(d['num_docks_available'] for d in divvy_stations)/(sum(d['num_docks_available'] for d in divvy_stations) + sum(d['num_bikes_available'] for d in divvy_stations))
+print('There are {}% of the bikes that are currently rented in the stystem'.format(round(100*ratio_of_bikes,2)))
+                                                                         
 
 # PROBLEM 3 
 # Add a new variable for each divvy station's entry, "percent_bikes_remaining", that shows 
 # the percentage of bikes available at each individual station (again ignore ebikes). 
 # This variable should be formatted as a percentage rounded to 2 decimal places, e.g. 66.67%
 
+for d in divvy_stations:  
+          percentage = d['num_bikes_available']/(d['num_bikes_available']+d['num_docks_available'])  
+          percentage = round(percentage*100, 2)
+          d.update({'percent_bikes_remaining': '{}%'.format(percentage)})  
